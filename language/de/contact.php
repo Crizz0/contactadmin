@@ -47,7 +47,7 @@ $lang = array_merge($lang, array(
 	'CONTACT_BOT_FORUM_MESSAGE'	=> 'Der Benutzer %1$s hat versucht die „Contact Admin“-Extension auf %2$s zu wenden, baber das in den Einstellungen ausgewählte Forum ist nicht korrekt. Bitte besuche das Board %3$s und wähle ein anderes Forum für die „Contact Administration“-Extension aus.',
 	'CONTACT_CONFIRM'			=> 'Bestätigen',
 	'CONTACT_DISABLED'			=> 'Du kannst das Kontaktformular im Moment nicht benutzen, da es deaktiviert ist.',
-	'CONTACT_MAIL_DISABLED'		=> 'Es ist ein Fehler in der Konfiguration der "Contact Administration"-Extension aufgetreten.<br />Die Extension wurde so eingerichtet eine E-Mail zu senden, aber die Einstellungen sind eingestellt, um E-Mails zu senden. Bitte informiere die Administratoren oder Webmaster: <a href="mailto:%1$s">%1$s</a>',
+	'CONTACT_MAIL_DISABLED'		=> 'Es ist ein Fehler in der Konfiguration der "Contact Administration"-Extension aufgetreten.<br />Die Extension wurde so eingerichtet eine E-Mail zu senden, aber die Einstellungen sind eingestellt, um E-Mails zu senden. Bitte informiere die %sAdministratoren%s',
 	'CONTACT_MSG_SENT'			=> 'Deine Nachricht wurde erfolgreich versendet',
 	'CONTACT_NO_MSG'			=> 'Du hast keine Nachricht eingegeben.',
 	'CONTACT_NO_SUBJ'			=> 'Du hast keinen Betrett eingegeben.',
