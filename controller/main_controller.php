@@ -11,7 +11,6 @@ namespace rmcgirr83\contactadmin\controller;
 
 use phpbb\exception\http_exception;
 use rmcgirr83\contactadmin\core\contact_constants;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
 * Main controller
@@ -38,9 +37,6 @@ class main_controller
 
 	/* @var \phpbb\request\request */
 	protected $request;
-
-	/** @var ContainerInterface */
-	protected $phpbb_container;
 
 	/** @var \phpbb\template\template */
 	protected $template;
@@ -71,7 +67,6 @@ class main_controller
 			\phpbb\controller\helper $helper,
 			\phpbb\event\dispatcher_interface $dispatcher,
 			\phpbb\request\request $request,
-			ContainerInterface $phpbb_container,
 			\phpbb\template\template $template,
 			\phpbb\user $user,
 			\phpbb\log\log $log,
@@ -88,7 +83,6 @@ class main_controller
 		$this->helper = $helper;
 		$this->dispatcher = $dispatcher;
 		$this->request = $request;
-		$this->container = $phpbb_container;
 		$this->template = $template;
 		$this->user = $user;
 		$this->log = $log;
@@ -108,6 +102,11 @@ class main_controller
 		else
 		{
 			$this->contact_reasons = array();
+		}
+
+		if (!class_exists('messenger'))
+		{
+			include($this->root_path . 'includes/functions_messenger.' . $this->php_ext);
 		}
 	}
 
@@ -130,7 +129,6 @@ class main_controller
 			throw new http_exception(401, 'NOT_AUTHORISED');
 		}
 
-		// Trigger error if board email is disabled but email set in config for contact
 		if (!$this->config['email_enable'] && $this->config['contactadmin_method'] == contact_constants::CONTACT_METHOD_EMAIL)
 		{
 			$this->config->set('contactadmin_enable', 0);
@@ -138,9 +136,9 @@ class main_controller
 			// add an entry into the error log
 			$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_CONTACT_EMAIL_INVALID',  time());
 
-			$message = sprintf($this->user->lang('CONTACT_MAIL_DISABLED'), $this->config['board_contact']);
+			$message = sprintf($this->user->lang('CONTACT_MAIL_DISABLED'), '<a href="mailto:' . htmlspecialchars($this->config['board_contact']) . '">', '</a>');
 
-			throw new http_exception(503, $message);
+			return $this->helper->message($message);
 		}
 
 		// check to make sure the contact forum is legit for posting
@@ -284,6 +282,10 @@ class main_controller
 				{
 					$contact_perms = $this->contactadmin->contact_change_auth($this->config['contactadmin_bot_user']);
 				}
+				if (!function_exists('create_thumbnail'))
+				{
+					include($this->root_path . 'includes/functions_posting.' . $this->php_ext);
+				}
 				if (!class_exists('parse_message'))
 				{
 					include($this->root_path . 'includes/message_parser.' . $this->php_ext);
@@ -292,12 +294,10 @@ class main_controller
 				// Parse Attachments - before checksum is calculated
 				if ($this->config['contactadmin_method'] != contact_constants::CONTACT_METHOD_PM)
 				{
-					//$message_parser->get_submitted_attachment_data();
 					$message_parser->parse_attachments('fileupload', 'post', $this->config['contactadmin_forum'], true, false, false);
 				}
 				else
 				{
-					//$message_parser->get_submitted_attachment_data();
 					$message_parser->parse_attachments('fileupload', 'post', 0, true, false, false, true);
 				}
 
@@ -319,7 +319,7 @@ class main_controller
 				// Grab md5 'checksum' of new message
 				$message_md5 = md5($message_parser->message);
 
-				if (sizeof($message_parser->warn_msg))
+				if (count($message_parser->warn_msg))
 				{
 					$error[] = implode('<br />', $message_parser->warn_msg);
 					$message_parser->warn_msg = array();
@@ -340,7 +340,7 @@ class main_controller
 			extract($this->dispatcher->trigger_event('rmcgirr83.contactadmin.modify_data_and_error', compact($vars)));
 
 			// no errors, let's proceed
-			if (!sizeof($error))
+			if (!count($error))
 			{
 				if ($this->config['contactadmin_method'] != contact_constants::CONTACT_METHOD_POST)
 				{
@@ -352,12 +352,10 @@ class main_controller
 				switch ($this->config['contactadmin_method'])
 				{
 					case contact_constants::CONTACT_METHOD_PM:
-
 						if (!function_exists('submit_pm'))
 						{
-							include($this->root_path . 'includes/functions_privmsgs.' . $this->php_ext);
+							include_once($this->root_path . 'includes/functions_privmsgs.' . $this->php_ext);
 						}
-
 						$pm_data = array(
 							'from_user_id'		=> (int) $this->user->data['user_id'],
 							'icon_id'			=> 0,
@@ -375,7 +373,7 @@ class main_controller
 						);
 
 						// Loop through our list of users
-						$size = sizeof($contact_users);
+						$size = count($contact_users);
 						for ($i = 0; $i < $size; $i++)
 						{
 							$pm_data['address_list'] = array('u' => array($contact_users[$i]['user_id'] => 'to'));
@@ -426,10 +424,7 @@ class main_controller
 							$post_data['topic_desc'] = '';
 						}
 						$poll = array();
-						if (!function_exists('submit_post'))
-						{
-							include($this->root_path . 'includes/functions_posting.' . $this->php_ext);
-						}
+
 						// Submit the post!
 						submit_post('post', $subject, $this->user->data['username'], POST_NORMAL, $poll, $post_data);
 
@@ -446,10 +441,6 @@ class main_controller
 
 						// Some of the code borrowed from includes/ucp/ucp_register.php
 						// The first argument of messenger::messenger() decides if it uses the message queue (which we will)
-						if (!class_exists('messenger'))
-						{
-							include($this->root_path . 'includes/functions_messenger.' . $this->php_ext);
-						}
 
 						$messenger = new \messenger(true);
 
@@ -459,7 +450,7 @@ class main_controller
 						$messenger->headers('X-AntiAbuse: Username - ' . $this->user->data['username']);
 						$messenger->headers('X-AntiAbuse: User IP - ' . $this->user->ip);
 
-						$size = sizeof($contact_users);
+						$size = count($contact_users);
 
 						// build an array of all lang directories for the extension and check to make sure we have the lang available that is being chosen
 						// if the lang isn't present then errors will present themselves due to no email template found
@@ -515,7 +506,8 @@ class main_controller
 				}
 
 				$message = $this->user->lang('CONTACT_MSG_SENT') . '<br /><br />' . sprintf($this->user->lang('RETURN_INDEX'), '<a href="' . append_sid("{$this->root_path}index.$this->php_ext") . '">', '</a>');
-				trigger_error($message);
+
+				return $this->helper->message($message);
 			}
 		}
 		// Visual Confirmation - Show images
@@ -589,7 +581,7 @@ class main_controller
 			'S_EMAIL'				=> ($this->config['contactadmin_method'] == contact_constants::CONTACT_METHOD_EMAIL) ? true : false,
 
 			'S_HIDDEN_FIELDS'		=> $s_hidden_fields,
-			'S_ERROR'				=> (isset($error) && sizeof($error)) ? implode('<br />', $error) : '',
+			'S_ERROR'				=> (isset($error) && count($error)) ? implode('<br />', $error) : '',
 			'S_CONTACT_ACTION'		=> $this->helper->route('rmcgirr83_contactadmin_displayform'),
 		));
 
