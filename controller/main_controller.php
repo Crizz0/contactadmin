@@ -334,7 +334,7 @@ class main_controller
 
 				$message_parser->parse(true, true, true, true, false, true, true);
 			}
-			
+
 			/**
 			* Modify data and error strings
 			*
