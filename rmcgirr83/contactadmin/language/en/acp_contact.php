@@ -37,9 +37,9 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'CONTACT_CONFIG_SAVED'			=> 'Contact Board Administration configuration has been updated',
-	'CONTACT_ENABLE'				=> 'Enable Contact Board Administration Extension',
-	'CONTACT_ENABLE_EXPLAIN'		=> 'Enable or disable the extension globally',
+	'CONTACT_CONFIG_SAVED'				=> 'Contact Board Administration configuration has been updated',
+	'CONTACT_ENABLE'					=> 'Enable Contact Board Administration Extension',
+	'CONTACT_ENABLE_EXPLAIN'			=> 'Enable or disable the extension globally',
 	'CONTACT_ACP_CONFIRM'				=> 'Enable visual confirmation',
 	'CONTACT_ACP_CONFIRM_EXPLAIN'		=> 'If you enable this option, users will have to enter a visual confirmation to send the message.<br>This is to prevent spam messages. Note that this option is for the contact page only.  It does not affect other visual confirmation settings.',
 	'CONTACT_ATTACHMENTS'				=> 'Attachments allowed',
@@ -56,24 +56,24 @@ $lang = array_merge($lang, array(
 	'CONTACT_REASONS'					=> 'Contact reasons',
 	'CONTACT_REASONS_EXPLAIN'			=> 'Enter reasons for contacting, separated by new lines.<br>If you don’t want to use this feature, leave this field empty.',
 	// Bot config options
-	'CONTACT_BOT_FORUM'				=> 'Contact bot forum',
-	'CONTACT_BOT_FORUM_EXPLAIN'		=> 'Select the forum, where the contact bot should post to, if the contact method is set to “Forum post”.',
-	'CONTACT_BOT_POSTER'			=> 'Bot as Poster',
-	'CONTACT_BOT_POSTER_EXPLAIN'	=> 'If set PM’s and posts will seem to come from the contact bot user chosen above based on the settings here. If “Neither” is selected then the bot is not used as the poster.  Posts and PM’s will be posted based on the information entered in the contact form.',
-	'CONTACT_BOT_USER'				=> 'Contact bot user',
-	'CONTACT_BOT_USER_EXPLAIN'		=> 'Select the user that messages will be posted under if the contact method is set to “Private Message” or “Forum Post”.',
-	'CONTACT_USERNAME_CHK'			=> 'Check Username',
-	'CONTACT_USERNAME_CHK_EXPLAIN'	=> 'If set yes, the users name that is entered will be checked against those in the database. If a similar name is found the user will be presented with an error and asked to input a different user name.',
-	'CONTACT_EMAIL_CHK'				=> 'Check Email',
-	'CONTACT_EMAIL_CHK_EXPLAIN'		=> 'If set yes, the users email will be checked against those in the database. If a similar email is found the user will be presented with an error and asked to input a different email address.',
+	'CONTACT_BOT_FORUM'					=> 'Contact bot forum',
+	'CONTACT_BOT_FORUM_EXPLAIN'			=> 'Select the forum, where the contact bot should post to, if the contact method is set to “Forum post”.',
+	'CONTACT_BOT_POSTER'				=> 'Bot as Poster',
+	'CONTACT_BOT_POSTER_EXPLAIN'		=> 'If set PM’s and posts will seem to come from the contact bot user chosen above based on the settings here. If “Neither” is selected then the bot is not used as the poster.  Posts and PM’s will be posted based on the information entered in the contact form.',
+	'CONTACT_BOT_USER'					=> 'Contact bot user',
+	'CONTACT_BOT_USER_EXPLAIN'			=> 'Enter the user that messages will be posted under if the contact method is set to “Private Message” or “Forum Post”.',
+	'CONTACT_USERNAME_CHK'				=> 'Check Username',
+	'CONTACT_USERNAME_CHK_EXPLAIN'		=> 'If set yes, the users name that is entered will be checked against those in the database. If a similar name is found the user will be presented with an error and asked to input a different user name.',
+	'CONTACT_EMAIL_CHK'					=> 'Check Email',
+	'CONTACT_EMAIL_CHK_EXPLAIN'			=> 'If set yes, the users email will be checked against those in the database. If a similar email is found the user will be presented with an error and asked to input a different email address.',
 
 	// Contact methods
-	'CONTACT_METHOD_EMAIL'			=> 'Email',
-	'CONTACT_METHOD_PM'				=> 'Private message',
-	'CONTACT_METHOD_POST'			=> 'Forum post',
+	'CONTACT_METHOD_EMAIL'				=> 'Email',
+	'CONTACT_METHOD_PM'					=> 'Private message',
+	'CONTACT_METHOD_POST'				=> 'Forum post',
 
 	// Contact posters...user bot
-	'CONTACT_POST_NEITHER'			=> 'Neither',
-	'CONTACT_POST_GUEST'			=> 'Guests only',
-	'CONTACT_POST_ALL'				=> 'Everyone',
+	'CONTACT_POST_NEITHER'				=> 'Neither',
+	'CONTACT_POST_GUEST'				=> 'Guests only',
+	'CONTACT_POST_ALL'					=> 'Everyone',
 ));

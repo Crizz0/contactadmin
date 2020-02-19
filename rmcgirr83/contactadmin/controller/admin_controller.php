@@ -181,7 +181,7 @@ class admin_controller
 			'CONTACT_METHOD'				=> $this->contactadmin->method_select($this->config['contactadmin_method']),
 			'CONTACT_BOT_POSTER'			=> $this->contactadmin->poster_select($this->config['contactadmin_bot_poster']),
 			'CONTACT_BOT_FORUM'				=> $this->contactadmin->forum_select($this->config['contactadmin_forum']),
-			'CONTACT_BOT_USER'				=> $this->contactadmin->bot_user_select($this->config['contactadmin_bot_user']),
+			'CONTACT_BOT_USER'				=> $this->contactadmin->get_user_name($this->config['contactadmin_bot_user']),
 			'CONTACT_USERNAME_CHK'			=> $this->config['contactadmin_username_chk'],
 			'CONTACT_EMAIL_CHK'				=> $this->config['contactadmin_email_chk'],
 
@@ -205,6 +205,7 @@ class admin_controller
 			'S_LINKS_ALLOWED'		=> true,
 
 			'U_ACTION'				=> $this->u_action,
+			'U_FIND_USERNAME'		=> append_sid("{$this->root_path}memberlist.{$this->php_ext}", "mode=searchuser&amp;form=contactadmin&amp;field=contact_bot_user&amp;select_single=true"),
 		));
 		// Assigning custom bbcodes
 		display_custom_bbcodes();
@@ -220,7 +221,7 @@ class admin_controller
 		$this->config->set('contactadmin_founder_only', $this->request->variable('founder_only', 0));
 		$this->config->set('contactadmin_bot_poster', $this->request->variable('contact_bot_poster', 0));
 		$this->config->set('contactadmin_forum', $this->request->variable('forum', 0));
-		$this->config->set('contactadmin_bot_user', $this->request->variable('bot_user', 0));
+		$this->config->set('contactadmin_bot_user', $this->contactadmin->get_user_id($this->request->variable('contact_bot_user', ''), $this->user->data['user_id']));
 		$this->config->set('contactadmin_username_chk', $this->request->variable('username_chk', 0));
 		$this->config->set('contactadmin_email_chk', $this->request->variable('email_chk', 0));
 		$this->config->set('contactadmin_method', $this->request->variable('contact_method', 0));
