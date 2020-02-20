@@ -38,9 +38,9 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'CONTACT_CONFIG_SAVED'			=> 'Die „Contact Board Administration“-Konfiguration wurde aktualisiert',
-	'CONTACT_ENABLE'				=> 'Aktiviere die „Contact Board Administration“-Extension',
-	'CONTACT_ENABLE_EXPLAIN'		=> 'Aktiviere oder deaktiviere global die Extension',
+	'CONTACT_CONFIG_SAVED'				=> 'Die „Contact Board Administration“-Konfiguration wurde aktualisiert',
+	'CONTACT_ENABLE'					=> 'Aktiviere die „Contact Board Administration“-Extension',
+	'CONTACT_ENABLE_EXPLAIN'			=> 'Aktiviere oder deaktiviere global die Extension',
 	'CONTACT_ACP_CONFIRM'				=> 'Aktiviere den Bestätigungscode',
 	'CONTACT_ACP_CONFIRM_EXPLAIN'		=> 'Wenn du diese Einstellung aktivierst, müssen die Benutzer einen Bestätigungscode eintragen, um eine Nachricht zu senden.<br>Damit werden Spam-Nachrichten verhindert. Beachte, dass diese Einstellung nur für das Kontaktformular gültig ist. Es beeinflusst keine anderen Bestätigungscodes-Einstellung.',
 	'CONTACT_ATTACHMENTS'				=> 'Dateianhänge erlaubt',
@@ -57,24 +57,24 @@ $lang = array_merge($lang, array(
 	'CONTACT_REASONS'					=> 'Kontaktgründe',
 	'CONTACT_REASONS_EXPLAIN'			=> 'Trage Gründe für den Kontakt ein, je Grund eine eigene Zeile.<br>Wenn du diese Funktion nicht verwenden willst, dann lasse dieses Feld leer.',
 	// Bot config options
-	'CONTACT_BOT_FORUM'				=> 'Kontaktbot',
-	'CONTACT_BOT_FORUM_EXPLAIN'		=> 'Wähle das Forum aus, in das der Kontaktbot schreiben soll, sofern die Kontaktart „Forenbeitrag“ ausgewählt wurde.',
-	'CONTACT_BOT_POSTER'			=> 'Kontaktbot-Benutzer als Beitragsersteller',
-	'CONTACT_BOT_POSTER_EXPLAIN'	=> 'Wenn aktiviert, werden PNs und Beiträge durch den Kontaktbot-Benutzer erstellt. Wenn „Weder noch“ ausgewählt wurde, wird der Kontaktbot-Benutzer nicht verwendet. Dann werden Beiträge und PNs basierend auf den Einträgen in das Kontaktformular erstellt.',
-	'CONTACT_BOT_USER'				=> 'Kontaktbot-Benutzer',
-	'CONTACT_BOT_USER_EXPLAIN'		=> 'Wähle den Benutzer aus, unter dessen Account die Nachrichten erstellen werden, sofern die Kontaktart „Private Nachricht” oder „Forenbeitrag” ausgewählt wurde.',
-	'CONTACT_USERNAME_CHK'			=> 'Prüfe Benutzernamen Username',
-	'CONTACT_USERNAME_CHK_EXPLAIN'	=> 'Wenn aktiviert, werden die eingetragenen Benutzernamen mit der Mitgliederliste abgeglichen. Wenn eine Übereinstimmung gefunden wird, bekommt der Benutzer eine Fehlermeldung gezeigt und wird aufgefordert einen anderen Benutzernamen zu wählen.',
-	'CONTACT_EMAIL_CHK'				=> 'Prüfe E-Mail-Adresse',
-	'CONTACT_EMAIL_CHK_EXPLAIN'		=> 'Wenn aktiviert, werden die eingetragenen E-Mail_Adressen mit der Mitgliederliste abgeglichen. Wenn eine Übereinstimmung gefunden wird, bekommt der Benutzer eine Fehlermeldung gezeigt und wird aufgefordert eine andere E-Mail-Adresse zu verwenden.',
+	'CONTACT_BOT_FORUM'					=> 'Kontaktbot',
+	'CONTACT_BOT_FORUM_EXPLAIN'			=> 'Wähle das Forum aus, in das der Kontaktbot schreiben soll, sofern die Kontaktart „Forenbeitrag“ ausgewählt wurde.',
+	'CONTACT_BOT_POSTER'				=> 'Kontaktbot-Benutzer als Beitragsersteller',
+	'CONTACT_BOT_POSTER_EXPLAIN'		=> 'Wenn aktiviert, werden PNs und Beiträge durch den Kontaktbot-Benutzer erstellt. Wenn „Weder noch“ ausgewählt wurde, wird der Kontaktbot-Benutzer nicht verwendet. Dann werden Beiträge und PNs basierend auf den Einträgen in das Kontaktformular erstellt.',
+	'CONTACT_BOT_USER'					=> 'Kontaktbot-Benutzer',
+	'CONTACT_BOT_USER_EXPLAIN'			=> 'Gib den Benutzer ein, unter dessen Account die Nachrichten erstellen werden, sofern die Kontaktart „Private Nachricht” oder „Forenbeitrag” ausgewählt wurde.',
+	'CONTACT_USERNAME_CHK'				=> 'Prüfe Benutzernamen Username',
+	'CONTACT_USERNAME_CHK_EXPLAIN'		=> 'Wenn aktiviert, werden die eingetragenen Benutzernamen mit der Mitgliederliste abgeglichen. Wenn eine Übereinstimmung gefunden wird, bekommt der Benutzer eine Fehlermeldung gezeigt und wird aufgefordert einen anderen Benutzernamen zu wählen.',
+	'CONTACT_EMAIL_CHK'					=> 'Prüfe E-Mail-Adresse',
+	'CONTACT_EMAIL_CHK_EXPLAIN'			=> 'Wenn aktiviert, werden die eingetragenen E-Mail_Adressen mit der Mitgliederliste abgeglichen. Wenn eine Übereinstimmung gefunden wird, bekommt der Benutzer eine Fehlermeldung gezeigt und wird aufgefordert eine andere E-Mail-Adresse zu verwenden.',
 
 	// Contact methods
-	'CONTACT_METHOD_EMAIL'			=> 'E-Mail',
-	'CONTACT_METHOD_PM'				=> 'Private Nachricht',
-	'CONTACT_METHOD_POST'			=> 'Forenbeitrag',
+	'CONTACT_METHOD_EMAIL'				=> 'E-Mail',
+	'CONTACT_METHOD_PM'					=> 'Private Nachricht',
+	'CONTACT_METHOD_POST'				=> 'Forenbeitrag',
 
 	// Contact posters...user bot
-	'CONTACT_POST_NEITHER'			=> 'Weder noch',
-	'CONTACT_POST_GUEST'			=> 'Nur Gäste',
-	'CONTACT_POST_ALL'				=> 'Jeder',
+	'CONTACT_POST_NEITHER'				=> 'Weder noch',
+	'CONTACT_POST_GUEST'				=> 'Nur Gäste',
+	'CONTACT_POST_ALL'					=> 'Jeder',
 ));

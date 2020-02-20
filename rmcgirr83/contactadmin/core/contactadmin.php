@@ -469,4 +469,40 @@ class contactadmin
 		}
 		return $dir_array;
 	}
+
+	/*
+	 * Get user_id from user_name (LukeWCS)
+	 */
+	public function get_user_id($user_name, $default_id = 0)
+	{
+		$sql = 'SELECT user_id
+				FROM ' . USERS_TABLE . "
+				WHERE username_clean = '" . $this->db->sql_escape(utf8_clean_string($user_name)) . "'";
+		$result = $this->db->sql_query($sql);
+		$user_id = (int) $this->db->sql_fetchfield('user_id');
+		$this->db->sql_freeresult($result);
+		if ($user_id == 0 && $default_id != 0)
+		{
+			$user_id = $default_id;
+		}
+		return $user_id;
+	}
+
+	/*
+	 * Get user_name from user_id (LukeWCS)
+	 */
+	public function get_user_name($user_id, $default_name = false)
+	{
+		$sql = 'SELECT username
+				FROM ' . USERS_TABLE . "
+				WHERE user_id = " . (int) $user_id;
+		$result = $this->db->sql_query($sql);
+		$user_name = $this->db->sql_fetchfield('username');
+		$this->db->sql_freeresult($result);
+		if (!$user_name && $default_name)
+		{
+			$user_name = $default_name;
+		}
+		return $user_name;
+	}
 }
