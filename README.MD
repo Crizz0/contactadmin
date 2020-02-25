@@ -1,4 +1,4 @@
-Contact Admin
+Contact Admin (Fork)
 =========================
 
 phpBB 3.2 extension that allows guests and/or registered users to either send an email to admins or to either send a PM or make a Post in a designated forum. It also overrides the default contact admin link found on the forum.  A port of the phpBB 3.0.x mod “Contact Board Adminnistration”
@@ -11,7 +11,7 @@ Clone (or download and move) the repository into the folder ext/rmcgirr83/contac
 
 ```
 cd phpBB3
-git clone https://github.com/rmcgirr83/contactadmin.git ext/rmcgirr83/contactadmin/
+git clone https://github.com/Crizz0/contactadmin.git ext/rmcgirr83/contactadmin/
 ```
 
 ### 2. activate
